@@ -8,6 +8,32 @@ Apex Service Locator is a dependency resolution library for the Salesforce Force
 **Language:** Apex (Salesforce)
 **API Version:** 44.0 (Salesforce DX)
 
+## Development Methodology — Test First (MANDATORY)
+
+This organization follows a strict test-first workflow. **No implementation code is written before the following prerequisites are complete.** AI assistants must adhere to this process without exception.
+
+### Before writing any code, you must have:
+
+1. **Problem statement** — A clear, concise description of the problem being solved
+2. **Business logic** — The defining rules and logic that govern the solution
+3. **Representative data** — Example data that illustrates inputs, outputs, and edge cases
+4. **All use cases** — Every scenario the implementation must handle, including error and boundary cases
+5. **Acceptance criteria** — Specific, measurable conditions that determine when the work is complete
+
+### Then, before writing implementation code:
+
+6. **Define tests first** — Write test methods that encode the acceptance criteria. Tests should fail initially (red phase) because the implementation does not yet exist.
+7. **Write implementation** — Write the minimum code necessary to make all tests pass (green phase).
+
+### What this means for AI assistants:
+
+- When asked to implement a feature or fix a bug, **ask for or establish** the problem statement, use cases, and acceptance criteria before writing code
+- **Write or update test methods before writing implementation code** — always
+- Do not skip ahead to implementation even if the solution seems obvious
+- If acceptance criteria are ambiguous or incomplete, ask for clarification rather than assuming
+- Each acceptance criterion should map to at least one test method
+- Tests must use representative data that exercises all identified use cases
+
 ## Repository Structure
 
 ```
@@ -86,6 +112,15 @@ ApexServiceLocator/
 
 ## Testing
 
+### Test-First Workflow
+
+Per the organization's mandatory development methodology, tests are always written before implementation code. The workflow is:
+
+1. Define acceptance criteria for the change
+2. Write `@IsTest` methods that assert the expected behavior (these should fail initially)
+3. Write or modify implementation code until all tests pass
+4. Verify no existing tests have been broken
+
 ### Framework
 
 Standard Salesforce Apex test framework using `@IsTest` annotations. No external test dependencies.
@@ -144,9 +179,11 @@ sfdx force:source:push
 
 ### Adding a new interface-to-class mapping
 
-1. Create your interface and implementing class
-2. Add a `LocatorConfig__mdt` custom metadata record with `InterfaceName__c`, `ClassName__c`, and `IsActive__c = true`
-3. Or rely on the `I`-prefix naming convention (no configuration needed)
+1. Define the problem statement, use cases, and acceptance criteria
+2. Write test methods in `ServiceLocator_Test.cls` that assert the expected resolution behavior
+3. Create your interface and implementing class
+4. Add a `LocatorConfig__mdt` custom metadata record with `InterfaceName__c`, `ClassName__c`, and `IsActive__c = true` — or rely on the `I`-prefix naming convention (no configuration needed)
+5. Verify all tests pass
 
 ### Overriding resolution in tests
 
