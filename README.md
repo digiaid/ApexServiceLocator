@@ -65,6 +65,10 @@ In this case, the service locator is called as such:
 [Service Locator Pattern wikipedia](https://en.wikipedia.org/wiki/Service_locator_pattern)  
 [Mike Lockett Blog](https://www.objectfactory.ws/tech/service-locator.php)
 
+## Gift sandbox tests
+
+Guest gift scenarios for the tsystest02 TransFirst mock live in [testing/tsystest02](testing/tsystest02/README.md).
+
 ## Future
 Might enable user to point to a factory class which would build the object as needed
 

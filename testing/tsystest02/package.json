@@ -1,0 +1,12 @@
+{
+  "name": "tsystest02-gift-tests",
+  "private": true,
+  "description": "Guest gift scenarios for the Young Life tsystest02 TransFirst mock.",
+  "scripts": {
+    "test": "node run.js",
+    "verify": "node run.js --verify"
+  },
+  "dependencies": {
+    "playwright": "1.55.0"
+  }
+}

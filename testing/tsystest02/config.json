@@ -1,0 +1,26 @@
+{
+  "baseUrl": "https://young-life--tsystest02.sandbox.my.site.com/s/",
+  "designation": {
+    "search": "Boonville",
+    "recipient": "Boonville Young Life - IN113",
+    "missionUnitCode": "IN113"
+  },
+  "address": {
+    "street": "123 Test Lane",
+    "city": "Colorado Springs",
+    "state": "Colorado",
+    "postalCode": "80903"
+  },
+  "card": {
+    "successNumber": "4111111111111100",
+    "declineNumber": "4111111111111101",
+    "expMonth": "12",
+    "expYear": "2028",
+    "cvv": "123"
+  },
+  "ach": {
+    "successAccount": "1234567800",
+    "declineAccount": "1234567801",
+    "routing": "121212121"
+  }
+}
