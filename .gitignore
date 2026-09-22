@@ -5,7 +5,7 @@
 !README.md
 !sfdx-project.json
 !/testing/
-/testing/tsystest02/node_modules/
-/testing/tsystest02/results/
-/testing/tsystest02/.chrome-profile/
+/testing/giving/node_modules/
+/testing/giving/results/
+/testing/giving/.chrome-profile/
 /force-app/main/default/profiles

@@ -8,8 +8,38 @@ const { invoiceItems, compareInvoice } = require('./lib/verify');
 
 const ROOT = __dirname;
 
-function selectedScenarios() {
-  const names = process.argv.slice(2).filter((arg) => !arg.startsWith('--'));
+function parseArgs(argv) {
+  const args = { sandbox: process.env.SANDBOX || '', verify: false, references: [], scenarios: [] };
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === '--sandbox') {
+      args.sandbox = argv[index + 1] || '';
+      index += 1;
+    } else if (arg.startsWith('--sandbox=')) {
+      args.sandbox = arg.slice('--sandbox='.length);
+    } else if (arg === '--verify') {
+      args.verify = true;
+    } else if (arg.startsWith('--')) {
+      throw new Error(`Unknown option: ${arg}`);
+    } else if (args.verify) {
+      args.references.push(arg);
+    } else {
+      args.scenarios.push(arg);
+    }
+  }
+  if (!/^[A-Za-z0-9]+$/.test(args.sandbox)) {
+    const error = new Error('Pass --sandbox <name>, for example --sandbox tsystest02');
+    error.usage = true;
+    throw error;
+  }
+  return args;
+}
+
+function siteUrl(sandbox) {
+  return config.siteUrl.replaceAll('{sandbox}', sandbox);
+}
+
+function selectedScenarios(names) {
   if (!names.length) return scenarios;
   const chosen = scenarios.filter((scenario) => names.includes(scenario.id));
   const missing = names.filter((name) => !scenarios.some((scenario) => scenario.id === name));
@@ -63,13 +93,14 @@ async function verifyOnly(page, references) {
 }
 
 async function main() {
-  const verifyFlag = process.argv.indexOf('--verify');
+  const args = parseArgs(process.argv.slice(2));
+  config.baseUrl = siteUrl(args.sandbox);
   const port = process.env.TSYS_CDP_PORT || '9333';
   const { page, webdriver } = await connect(port);
-  if (verifyFlag !== -1) {
-    const references = process.argv.slice(verifyFlag + 1).filter((arg) => !arg.startsWith('--'));
-    if (!references.length) throw new Error('Pass one or more reference numbers after --verify');
-    await verifyOnly(page, references);
+  console.log(config.baseUrl);
+  if (args.verify) {
+    if (!args.references.length) throw new Error('Pass one or more reference numbers after --verify');
+    await verifyOnly(page, args.references);
     process.exit(0);
   }
 
@@ -77,12 +108,13 @@ async function main() {
   fs.mkdirSync(resultsDir, { recursive: true });
   const report = {
     startedAt: new Date().toISOString(),
+    sandbox: args.sandbox,
     baseUrl: config.baseUrl,
     webdriver,
     gifts: [],
   };
 
-  for (const scenario of selectedScenarios()) {
+  for (const scenario of selectedScenarios(args.scenarios)) {
     process.stdout.write(`\n${scenario.id} ... `);
     try {
       const result = await submitGift(page, config, scenario);
@@ -122,6 +154,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(error);
+  console.error(error.usage ? error.message : error);
   process.exit(1);
 });

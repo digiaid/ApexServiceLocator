@@ -1,7 +1,7 @@
 {
-  "name": "tsystest02-gift-tests",
+  "name": "sandbox-gift-tests",
   "private": true,
-  "description": "Guest gift scenarios for the Young Life tsystest02 TransFirst mock.",
+  "description": "Guest gift scenarios for a Young Life sandbox giving site.",
   "scripts": {
     "test": "node run.js",
     "verify": "node run.js --verify"

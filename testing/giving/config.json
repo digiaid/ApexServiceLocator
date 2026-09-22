@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://young-life--tsystest02.sandbox.my.site.com/s/",
+  "siteUrl": "https://young-life--{sandbox}.sandbox.my.site.com/s/",
   "designation": {
     "search": "Boonville",
     "recipient": "Boonville Young Life - IN113",

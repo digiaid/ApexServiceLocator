@@ -1,9 +1,13 @@
-# tsystest02 gift tests
+# Sandbox gift tests
 
-Guest checkout against the Young Life tsystest02 giving site. That sandbox uses a Tsys TXP TransFirst mock:
+Guest checkout against a Young Life sandbox giving site. Pass the sandbox name; the site URL is `https://young-life--{sandbox}.sandbox.my.site.com/s/`.
+
+These scenarios were written for the tsystest02 Tsys TXP TransFirst mock:
 
 - A card number ending in `00` is approved. A card number ending in `01` is declined.
 - An ACH account ending in `00` is approved. The routing number is `121212121`. An account ending in `01` is declined.
+
+Another sandbox can use the same runner. If its processor rules differ, change the card and ACH numbers in `config.json` and the expectations in `scenarios.json`.
 
 Successful gifts come back with a `YL…` reference number. The confirmation page loads that number through `YL_giftConfirmationController.getInvoiceItems`, which returns the `RP_InvoiceLine__c` (mission unit, class, frequency, amount, tribute). This package submits the gift, then checks that invoice line. Declines are checked on the billing page and are not given a reference number.
 
@@ -12,7 +16,7 @@ Successful gifts come back with a `YL…` reference number. The confirmation pag
 ## Setup
 
 ```bash
-cd testing/tsystest02
+cd testing/giving
 npm install
 ```
 
@@ -20,15 +24,17 @@ The runner starts a normal Google Chrome with a remote debugging port and attach
 
 ## Run
 
-From `testing/tsystest02`:
+`--sandbox` is required. `tsystest02` is one sandbox name, not the only target.
 
 ```bash
-npm test
-node run.js cc-onetime-fee ach-decline
-node run.js --verify YL0017738056
+node run.js --sandbox tsystest02
+node run.js --sandbox tsystest02 cc-onetime-fee ach-decline
+node run.js --sandbox tsystest02 --verify YL0017738056
 ```
 
-`npm test` runs every scenario in `scenarios.json` and writes `results/report-*.json`. Each run creates real guest gifts in the sandbox. Results, `node_modules`, and the Chrome profile are not committed.
+`SANDBOX=tsystest02 node run.js` is the same as `--sandbox tsystest02`.
+
+A full run writes `results/report-*.json` and creates real guest gifts in that sandbox. Results, `node_modules`, and the Chrome profile are not committed.
 
 ## Scenarios
 
@@ -47,4 +53,4 @@ node run.js --verify YL0017738056
 
 Every gift is a guest checkout to Boonville Young Life (IN113), 123 Test Lane, Colorado Springs, CO 80903. The card fee is 3.5% and the “I agree to cover processing fee” box is checked when Credit Card is selected.
 
-Edit `config.json` for the site URL, designation search, address, and the mock card and ACH numbers. Edit `scenarios.json` to add or drop cases.
+Edit `config.json` for the site URL pattern, designation search, address, and the mock card and ACH numbers. Edit `scenarios.json` to add or drop cases.

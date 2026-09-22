@@ -67,7 +67,7 @@ In this case, the service locator is called as such:
 
 ## Gift sandbox tests
 
-Guest gift scenarios for the tsystest02 TransFirst mock live in [testing/tsystest02](testing/tsystest02/README.md).
+Guest gift scenarios for a Young Life sandbox live in [testing/giving](testing/giving/README.md). Pass the sandbox name, for example `--sandbox tsystest02`.
 
 ## Future
 Might enable user to point to a factory class which would build the object as needed
