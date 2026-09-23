@@ -1,0 +1,12 @@
+{
+  "name": "sandbox-gift-tests",
+  "private": true,
+  "description": "Guest gift scenarios for a Young Life sandbox giving site.",
+  "scripts": {
+    "test": "node run.js",
+    "verify": "node run.js --verify"
+  },
+  "dependencies": {
+    "playwright": "1.55.0"
+  }
+}

@@ -65,6 +65,10 @@ In this case, the service locator is called as such:
 [Service Locator Pattern wikipedia](https://en.wikipedia.org/wiki/Service_locator_pattern)  
 [Mike Lockett Blog](https://www.objectfactory.ws/tech/service-locator.php)
 
+## Gift sandbox tests
+
+Guest gift scenarios for a Young Life sandbox live in [testing/giving](testing/giving/README.md). Pass the sandbox name, for example `--sandbox tsystest02`. Card, CVV, and bank-account values are per processor in `testing/giving/processors/`.
+
 ## Future
 Might enable user to point to a factory class which would build the object as needed
 

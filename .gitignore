@@ -4,4 +4,8 @@
 !.gitignore
 !README.md
 !sfdx-project.json
+!/testing/
+/testing/giving/node_modules/
+/testing/giving/results/
+/testing/giving/.chrome-profile/
 /force-app/main/default/profiles

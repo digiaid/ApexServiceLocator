@@ -1,0 +1,1403 @@
+{
+  "id": "transit",
+  "name": "TSYS TransIt",
+  "confirmedOnSandbox": false,
+  "source": "TSYS / Global Payments test-host cards and penny codes published by EasyPay and Number.tech, plus the TSYS ACH test account published by SensePass. These values have not been confirmed on a Young Life sandbox.",
+  "rule": "On the TSYS test host, the same card passes or fails based on the request amount. The card number does not select the outcome. No failing ACH account number is published; T0 through T3 are host check responses and are not tied to the test account below.",
+  "avsMatch": {
+    "cardId": "visa",
+    "street": "8320",
+    "postalCode": "85284"
+  },
+  "creditCards": [
+    {
+      "id": "visa",
+      "brand": "Visa",
+      "number": "4012000098765439",
+      "cvv": "999",
+      "expMonth": "12",
+      "expYear": "2028"
+    },
+    {
+      "id": "visa-alt",
+      "brand": "Visa",
+      "number": "4012881888818888",
+      "cvv": "999",
+      "expMonth": "12",
+      "expYear": "2028"
+    },
+    {
+      "id": "mastercard",
+      "brand": "Mastercard",
+      "number": "5146315000000055",
+      "cvv": "998",
+      "expMonth": "12",
+      "expYear": "2028"
+    },
+    {
+      "id": "mastercard-alt",
+      "brand": "Mastercard",
+      "number": "5146312200000035",
+      "cvv": "998",
+      "expMonth": "12",
+      "expYear": "2028"
+    },
+    {
+      "id": "mastercard-partial",
+      "brand": "Mastercard",
+      "number": "5146312620000045",
+      "cvv": "998",
+      "expMonth": "01",
+      "expYear": "2028"
+    },
+    {
+      "id": "amex",
+      "brand": "American Express",
+      "number": "371449635392376",
+      "cvv": "9997",
+      "expMonth": "12",
+      "expYear": "2028"
+    },
+    {
+      "id": "discover",
+      "brand": "Discover",
+      "number": "6011000993026909",
+      "cvv": "996",
+      "expMonth": "12",
+      "expYear": "2028"
+    },
+    {
+      "id": "discover-partial",
+      "brand": "Discover",
+      "number": "6011000993026909",
+      "cvv": "996",
+      "expMonth": "01",
+      "expYear": "2028"
+    }
+  ],
+  "bankAccounts": [
+    {
+      "id": "tsys-ach",
+      "type": "Checking",
+      "accountNumber": "123456789",
+      "routingNumber": "490000018",
+      "note": "Published as the account to use for TSYS ACH testing. A pass or fail result was not published for this account."
+    }
+  ],
+  "knownResults": [
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.00",
+      "outcome": "pass",
+      "code": "85",
+      "message": "Card Ok"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.01",
+      "outcome": "fail",
+      "code": "01",
+      "message": "Call Issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.02",
+      "outcome": "fail",
+      "code": "02",
+      "message": "Call Issuer, Special Cond."
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.03",
+      "outcome": "fail",
+      "code": "28",
+      "message": "File Temp. Unavailable"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.04",
+      "outcome": "fail",
+      "code": "91",
+      "message": "Issuer Unavailable or Inoperative, No STIP"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.05",
+      "outcome": "fail",
+      "code": "04",
+      "message": "Pick Up Card"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.06",
+      "outcome": "fail",
+      "code": "07",
+      "message": "Pick Up Card, Special Cond."
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.07",
+      "outcome": "fail",
+      "code": "41",
+      "message": "Pick Up Card, Lost"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.08",
+      "outcome": "fail",
+      "code": "43",
+      "message": "Pick Up Card, Stolen"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.09",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.10",
+      "outcome": "fail",
+      "code": "79",
+      "message": "Already Reversed"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.11",
+      "outcome": "fail",
+      "code": "13",
+      "message": "Invalid amount"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.12",
+      "outcome": "fail",
+      "code": "83",
+      "message": "Can't Verify PIN"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.13",
+      "outcome": "fail",
+      "code": "86",
+      "message": "Can't Verify PIN"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.14",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid Account Number"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.15",
+      "outcome": "fail",
+      "code": "82",
+      "message": "Incorrect CVV"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.16",
+      "outcome": "fail",
+      "code": "N3",
+      "message": "Cashback Not Available"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.17",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.18",
+      "outcome": "fail",
+      "code": "EC",
+      "message": "CID Format Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.19",
+      "outcome": "fail",
+      "code": "80",
+      "message": "No Financial Impact"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.20",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.21",
+      "outcome": "fail",
+      "code": "51",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.22",
+      "outcome": "fail",
+      "code": "N4",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.23",
+      "outcome": "fail",
+      "code": "61",
+      "message": "EXC APPR AMT LIM"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.24",
+      "outcome": "fail",
+      "code": "62",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.25",
+      "outcome": "fail",
+      "code": "65",
+      "message": "EXC W/D FREQ LIM"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.26",
+      "outcome": "fail",
+      "code": "93",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.27",
+      "outcome": "fail",
+      "code": "81",
+      "message": "Encryption Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.28",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.29",
+      "outcome": "fail",
+      "code": "54",
+      "message": "Expired Card"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.30",
+      "outcome": "fail",
+      "code": "92",
+      "message": "Invalid Routing"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.31",
+      "outcome": "fail",
+      "code": "12",
+      "message": "Invalid Trans"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.32",
+      "outcome": "fail",
+      "code": "78",
+      "message": "No Account"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.33",
+      "outcome": "fail",
+      "code": "21",
+      "message": "No action taken"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.34",
+      "outcome": "fail",
+      "code": "76",
+      "message": "Unsolic Reversal"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.35",
+      "outcome": "fail",
+      "code": "77",
+      "message": "No action taken"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.36",
+      "outcome": "fail",
+      "code": "52",
+      "message": "No Check Account"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.37",
+      "outcome": "fail",
+      "code": "39",
+      "message": "No Credit Acct"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.38",
+      "outcome": "fail",
+      "code": "53",
+      "message": "No Save Acct"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.39",
+      "outcome": "fail",
+      "code": "15",
+      "message": "No Such Issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.40",
+      "outcome": "fail",
+      "code": "75",
+      "message": "PIN Exceeded"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.41",
+      "outcome": "fail",
+      "code": "19",
+      "message": "RE-ENTER"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.42",
+      "outcome": "fail",
+      "code": "63",
+      "message": "SEC Violation"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.43",
+      "outcome": "fail",
+      "code": "57",
+      "message": "Txn not permitted"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.44",
+      "outcome": "fail",
+      "code": "58",
+      "message": "Serv Not Allowed"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.45",
+      "outcome": "fail",
+      "code": "96",
+      "message": "System Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.46",
+      "outcome": "fail",
+      "code": "03",
+      "message": "Term ID Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.47",
+      "outcome": "fail",
+      "code": "55",
+      "message": "Wrong PIN"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.48",
+      "outcome": "fail",
+      "code": "N7",
+      "message": "CVV Mismatch"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.49",
+      "outcome": "pass",
+      "code": "85",
+      "message": "Card OK"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.50",
+      "outcome": "pass",
+      "code": "00",
+      "message": "APPROVAL"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.54",
+      "outcome": "fail",
+      "code": "94",
+      "message": "Duplicate Transaction"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.96",
+      "outcome": "fail",
+      "code": "R0",
+      "message": "Stop Recurring"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "0.97",
+      "outcome": "fail",
+      "code": "R1",
+      "message": "Revoke Auth Order"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "1.12",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "1.13",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "1.30",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approval"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "1.31",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approval"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "1.34",
+      "outcome": "fail",
+      "code": "30",
+      "message": "Msg Format Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "10.00",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approval"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "32.48",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approval"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "32.85",
+      "outcome": "pass",
+      "code": "11",
+      "message": "Approval"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "32.88",
+      "outcome": "fail",
+      "code": "25",
+      "message": "No Card Number"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.01",
+      "outcome": "fail",
+      "code": "89",
+      "message": "Ineligible GIV"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.02",
+      "outcome": "fail",
+      "code": "H6",
+      "message": "Fail Get BDK"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.03",
+      "outcome": "fail",
+      "code": "H7",
+      "message": "Fail Get KPEI"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.04",
+      "outcome": "fail",
+      "code": "H8",
+      "message": "Encryption Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.05",
+      "outcome": "fail",
+      "code": "N9",
+      "message": "System Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.06",
+      "outcome": "fail",
+      "code": "N6",
+      "message": "N6 Error"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.10",
+      "outcome": "fail",
+      "code": "46",
+      "message": "Closed Account"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.11",
+      "outcome": "fail",
+      "code": "59",
+      "message": "Suspected Fraud"
+    },
+    {
+      "method": "card",
+      "cardId": "visa",
+      "amount": "64.12",
+      "outcome": "fail",
+      "code": "6P",
+      "message": "Verification Data Failed"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.01",
+      "outcome": "fail",
+      "code": "01",
+      "message": "Call Issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.05",
+      "outcome": "fail",
+      "code": "04",
+      "message": "Capture Card"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.07",
+      "outcome": "fail",
+      "code": "41",
+      "message": "Lost Card"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.08",
+      "outcome": "fail",
+      "code": "43",
+      "message": "Stolen Card"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.14",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid Account"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.29",
+      "outcome": "fail",
+      "code": "54",
+      "message": "Expired Card"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.30",
+      "outcome": "fail",
+      "code": "92",
+      "message": "Invalid Routing"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.31",
+      "outcome": "fail",
+      "code": "12",
+      "message": "Invalid Transaction"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "0.39",
+      "outcome": "fail",
+      "code": "15",
+      "message": "No Such Issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard",
+      "amount": "32.85",
+      "outcome": "pass",
+      "code": "08",
+      "message": "Honor With ID"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.05",
+      "outcome": "fail",
+      "code": "04",
+      "message": "Pick Up Card"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.11",
+      "outcome": "fail",
+      "code": "13",
+      "message": "Invalid amount"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.14",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid Account Number"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.18",
+      "outcome": "fail",
+      "code": "EC",
+      "message": "CID Format Error"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.19",
+      "outcome": "fail",
+      "code": "80",
+      "message": "No Financial Impact"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.20",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Decline"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.29",
+      "outcome": "fail",
+      "code": "54",
+      "message": "Expired Card"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "0.44",
+      "outcome": "fail",
+      "code": "58",
+      "message": "Serv Not Allowed"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.00",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approved and completed"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.01",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approved and completed"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.02",
+      "outcome": "pass",
+      "code": "11",
+      "message": "VIP approval"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.03",
+      "outcome": "pass",
+      "code": "08",
+      "message": "Honor MasterCard with ID"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.04",
+      "outcome": "fail",
+      "code": "03",
+      "message": "Invalid Merchant ID"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.05",
+      "outcome": "fail",
+      "code": "01",
+      "message": "Refer to issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.06",
+      "outcome": "fail",
+      "code": "01",
+      "message": "Refer to issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.07",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Do not honor"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.08",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Do not honor"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.09",
+      "outcome": "fail",
+      "code": "03",
+      "message": "Invalid Merchant ID"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.10",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.11",
+      "outcome": "fail",
+      "code": "75",
+      "message": "Allowable number of PIN-entry tries exceeded"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.12",
+      "outcome": "fail",
+      "code": "55",
+      "message": "Incorrect PIN"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.13",
+      "outcome": "fail",
+      "code": "57",
+      "message": "Transaction not permitted - Card"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.14",
+      "outcome": "fail",
+      "code": "96",
+      "message": "System malfunction"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "1.15",
+      "outcome": "fail",
+      "code": "91",
+      "message": "Issuer or switch unavailable"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "12.00",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approved and completed"
+    },
+    {
+      "method": "card",
+      "cardId": "amex",
+      "amount": "15.00",
+      "outcome": "partial",
+      "code": "10",
+      "message": "Partial approval"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.01",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.02",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.03",
+      "outcome": "fail",
+      "code": "03",
+      "message": "Invalid Merchant ID"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.04",
+      "outcome": "fail",
+      "code": "04",
+      "message": "Pick up card (no fraud)"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.05",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Do not honor"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.07",
+      "outcome": "fail",
+      "code": "07",
+      "message": "Pick up card, special condition (fraud account)"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.08",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.11",
+      "outcome": "pass",
+      "code": "00",
+      "message": "Approved and completed"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.12",
+      "outcome": "fail",
+      "code": "12",
+      "message": "Invalid transaction"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.13",
+      "outcome": "fail",
+      "code": "13",
+      "message": "Invalid amount"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.14",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid card number"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.15",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.19",
+      "outcome": "fail",
+      "code": "19",
+      "message": "Re-enter transaction"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.30",
+      "outcome": "fail",
+      "code": "30",
+      "message": "Transaction was improperly formatted"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.31",
+      "outcome": "fail",
+      "code": "15",
+      "message": "No such issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.33",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.34",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.35",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.36",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.37",
+      "outcome": "fail",
+      "code": "06",
+      "message": "General error"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.38",
+      "outcome": "fail",
+      "code": "75",
+      "message": "Allowable number of PIN-entry tries exceeded"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.39",
+      "outcome": "fail",
+      "code": "39",
+      "message": "No credit account"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.40",
+      "outcome": "fail",
+      "code": "12",
+      "message": "Invalid transaction"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.41",
+      "outcome": "fail",
+      "code": "41",
+      "message": "Lost card, pick up (fraud account)"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.43",
+      "outcome": "fail",
+      "code": "43",
+      "message": "Stolen card, pick up (fraud account)"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.51",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Do not honor"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.53",
+      "outcome": "fail",
+      "code": "53",
+      "message": "No savings account"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.54",
+      "outcome": "fail",
+      "code": "54",
+      "message": "Expired card"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.55",
+      "outcome": "fail",
+      "code": "55",
+      "message": "Incorrect PIN"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.56",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid card number"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.57",
+      "outcome": "fail",
+      "code": "57",
+      "message": "Transaction not permitted - Card"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.58",
+      "outcome": "fail",
+      "code": "58",
+      "message": "Transaction not permitted - Terminal"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.59",
+      "outcome": "fail",
+      "code": "05",
+      "message": "Do not honor"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.60",
+      "outcome": "fail",
+      "code": "01",
+      "message": "Refer to issuer"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.61",
+      "outcome": "fail",
+      "code": "61",
+      "message": "Exceeds approval amount limit"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.62",
+      "outcome": "fail",
+      "code": "62",
+      "message": "Invalid service code, restricted"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.63",
+      "outcome": "fail",
+      "code": "63",
+      "message": "Security violation"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.65",
+      "outcome": "fail",
+      "code": "65",
+      "message": "Exceeds withdrawal frequency limit"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.66",
+      "outcome": "fail",
+      "code": "77",
+      "message": "Inconsistent, reversed or repeat data"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.75",
+      "outcome": "fail",
+      "code": "75",
+      "message": "Allowable number of PIN-entry tries exceeded"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.76",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid card number"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.77",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid card number"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.78",
+      "outcome": "fail",
+      "code": "14",
+      "message": "Invalid card number"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.79",
+      "outcome": "pass",
+      "code": "85",
+      "message": "No reason to decline"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.87",
+      "outcome": "fail",
+      "code": "91",
+      "message": "Issuer or switch unavailable"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.91",
+      "outcome": "fail",
+      "code": "91",
+      "message": "Issuer or switch unavailable"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.92",
+      "outcome": "fail",
+      "code": "92",
+      "message": "Destination not found"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.93",
+      "outcome": "fail",
+      "code": "93",
+      "message": "Violation, cannot complete"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.94",
+      "outcome": "fail",
+      "code": "94",
+      "message": "Unable to locate, no match"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.96",
+      "outcome": "fail",
+      "code": "96",
+      "message": "System malfunction"
+    },
+    {
+      "method": "card",
+      "cardId": "discover",
+      "amount": "10.97",
+      "outcome": "fail",
+      "code": "D3",
+      "message": "Transaction failure due to missing or invalid 3D-Secure cryptogram"
+    },
+    {
+      "method": "card",
+      "cardId": "discover-partial",
+      "amount": "10.10",
+      "outcome": "partial",
+      "code": "10",
+      "message": "Partial approval",
+      "approvedAmount": "10.00"
+    },
+    {
+      "method": "card",
+      "cardId": "mastercard-partial",
+      "amount": "11.10",
+      "outcome": "partial",
+      "code": "10",
+      "message": "Partial approval",
+      "approvedAmount": "5.55"
+    },
+    {
+      "method": "ach",
+      "outcome": "pass",
+      "code": "T0",
+      "message": "First check is okay and has been converted."
+    },
+    {
+      "method": "ach",
+      "outcome": "fail",
+      "code": "T1",
+      "message": "The check is okay but cannot be converted."
+    },
+    {
+      "method": "ach",
+      "outcome": "fail",
+      "code": "T2",
+      "message": "Invalid ABA number, not an ACH participant."
+    },
+    {
+      "method": "ach",
+      "outcome": "fail",
+      "code": "T3",
+      "message": "Amount greater than the limit."
+    }
+  ]
+}

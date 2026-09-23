@@ -1,0 +1,162 @@
+[
+  {
+    "id": "cc-onetime-fee",
+    "amountPreset": "50",
+    "frequency": "once",
+    "method": "card",
+    "card": "success",
+    "coverFee": true,
+    "first": "CC",
+    "last": "OneTime",
+    "expect": {
+      "outcome": "success",
+      "payable": 51.75,
+      "frequency": "One-Time",
+      "className": "Operating"
+    }
+  },
+  {
+    "id": "cc-monthly-fee",
+    "amount": "25",
+    "frequency": "monthly",
+    "method": "card",
+    "card": "success",
+    "coverFee": true,
+    "first": "CC",
+    "last": "Monthly",
+    "expect": {
+      "outcome": "success",
+      "payable": 25.88,
+      "frequency": "Monthly",
+      "className": "Operating"
+    }
+  },
+  {
+    "id": "ach-onetime-checking",
+    "amountPreset": "100",
+    "frequency": "once",
+    "method": "ach",
+    "account": "success",
+    "accountType": "Checking",
+    "first": "ACH",
+    "last": "OneTime",
+    "expect": {
+      "outcome": "success",
+      "payable": 100,
+      "frequency": "One-Time",
+      "className": "Operating"
+    }
+  },
+  {
+    "id": "ach-quarterly-checking",
+    "amount": "75",
+    "frequency": "quarterly",
+    "method": "ach",
+    "account": "success",
+    "accountType": "Checking",
+    "first": "ACH",
+    "last": "Quarterly",
+    "expect": {
+      "outcome": "success",
+      "payable": 75,
+      "frequency": "Quarterly",
+      "className": "Operating"
+    }
+  },
+  {
+    "id": "cc-annual-tribute",
+    "amountPreset": "100",
+    "frequency": "annually",
+    "method": "card",
+    "card": "success",
+    "coverFee": true,
+    "tribute": { "first": "Pat", "last": "Example" },
+    "first": "CC",
+    "last": "Annual",
+    "expect": {
+      "outcome": "success",
+      "payable": 103.5,
+      "frequency": "Annual",
+      "className": "Operating",
+      "tributeType": "Honor",
+      "remarks": "In Honor of Pat Example"
+    }
+  },
+  {
+    "id": "cc-camp-scholarship",
+    "amountPreset": "50",
+    "frequency": "once",
+    "method": "card",
+    "card": "success",
+    "coverFee": true,
+    "designation": "Camp Scholarship",
+    "first": "CC",
+    "last": "Scholarship",
+    "expect": {
+      "outcome": "success",
+      "payable": 51.75,
+      "frequency": "One-Time",
+      "className": "Camp Scholarship"
+    }
+  },
+  {
+    "id": "ach-semiannual-savings",
+    "amount": "40",
+    "frequency": "semiannual",
+    "method": "ach",
+    "account": "success",
+    "accountType": "Savings",
+    "first": "ACH",
+    "last": "Savings",
+    "expect": {
+      "outcome": "success",
+      "payable": 40,
+      "frequency": "Semiannual",
+      "className": "Operating"
+    }
+  },
+  {
+    "id": "cc-onetime-no-fee",
+    "amountPreset": "50",
+    "frequency": "once",
+    "method": "card",
+    "card": "success",
+    "coverFee": false,
+    "first": "CC",
+    "last": "NoFee",
+    "expect": {
+      "outcome": "success",
+      "payable": 50,
+      "frequency": "One-Time",
+      "className": "Operating"
+    }
+  },
+  {
+    "id": "cc-decline",
+    "amountPreset": "50",
+    "frequency": "once",
+    "method": "card",
+    "card": "decline",
+    "coverFee": true,
+    "first": "CC",
+    "last": "Decline",
+    "expect": {
+      "outcome": "decline",
+      "message": "Refer to card issuer"
+    }
+  },
+  {
+    "id": "ach-decline",
+    "amount": "30",
+    "frequency": "once",
+    "method": "ach",
+    "account": "decline",
+    "accountType": "Checking",
+    "first": "ACH",
+    "last": "Decline",
+    "expect": {
+      "outcome": "decline",
+      "message": "Refer to card issuer"
+    }
+  }
+]
