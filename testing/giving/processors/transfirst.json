@@ -1,0 +1,52 @@
+{
+  "id": "transfirst",
+  "name": "Tsys TXP TransFirst",
+  "confirmedOnSandbox": true,
+  "sandboxes": ["tsystest02"],
+  "rule": "Any card number ending in 00 is approved. A card number ending in 01 is declined. An ACH account ending in 00 is approved when the routing number is 121212121. An account ending in 01 is declined.",
+  "creditCards": [
+    {
+      "id": "success",
+      "brand": "Visa",
+      "number": "4111111111111100",
+      "cvv": "123",
+      "expMonth": "12",
+      "expYear": "2028",
+      "outcome": "pass"
+    },
+    {
+      "id": "decline",
+      "brand": "Visa",
+      "number": "4111111111111101",
+      "cvv": "123",
+      "expMonth": "12",
+      "expYear": "2028",
+      "outcome": "fail",
+      "message": "Refer to card issuer"
+    }
+  ],
+  "bankAccounts": [
+    {
+      "id": "success",
+      "type": "Checking",
+      "accountNumber": "1234567800",
+      "routingNumber": "121212121",
+      "outcome": "pass"
+    },
+    {
+      "id": "success-savings",
+      "type": "Savings",
+      "accountNumber": "1234567800",
+      "routingNumber": "121212121",
+      "outcome": "pass"
+    },
+    {
+      "id": "decline",
+      "type": "Checking",
+      "accountNumber": "1234567801",
+      "routingNumber": "121212121",
+      "outcome": "fail",
+      "message": "Refer to card issuer,Transaction declined."
+    }
+  ]
+}

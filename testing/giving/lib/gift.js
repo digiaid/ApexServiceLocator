@@ -1,3 +1,5 @@
+const { creditCard, bankAccount } = require('./processor');
+
 const FREQUENCIES = {
   once: '#radio-once',
   monthly: '#radio-monthly',
@@ -160,24 +162,24 @@ async function submitGift(page, config, scenario) {
       if (credit) credit.click();
     });
     await page.waitForTimeout(600);
-    const number = scenario.card === 'decline' ? config.card.declineNumber : config.card.successNumber;
+    const card = creditCard(config.processor, scenario.card || 'success');
     await fillPlaceholder(page, 'Cardholder Name', `${scenario.first} ${scenario.last}`);
-    await fillPlaceholder(page, 'Card #', number);
-    await fillPlaceholder(page, 'Expiration Month', config.card.expMonth);
-    await fillPlaceholder(page, 'Expiration Year', config.card.expYear);
-    await fillPlaceholder(page, 'Security Code', config.card.cvv);
+    await fillPlaceholder(page, 'Card #', card.number);
+    await fillPlaceholder(page, 'Expiration Month', card.expMonth);
+    await fillPlaceholder(page, 'Expiration Year', card.expYear);
+    await fillPlaceholder(page, 'Security Code', card.cvv);
     await setCoverFee(page, scenario.coverFee);
   } else {
     await page.locator('a.slds-tabs_default__link').evaluateAll((links) => {
       const bank = links.find((link) => (link.innerText || '').trim() === 'BANK ACCOUNT');
       if (bank) bank.click();
     });
-    const account = scenario.account === 'decline' ? config.ach.declineAccount : config.ach.successAccount;
+    const account = bankAccount(config.processor, scenario.account || 'success');
     await fillPlaceholder(page, 'Account Owner Name', `${scenario.first} ${scenario.last}`);
-    await fillPlaceholder(page, 'Account #', account);
-    await fillPlaceholder(page, 'Confirm Account #', account);
-    await fillPlaceholder(page, 'Routing #', config.ach.routing);
-    await fillPlaceholder(page, 'Confirm Routing #', config.ach.routing);
+    await fillPlaceholder(page, 'Account #', account.accountNumber);
+    await fillPlaceholder(page, 'Confirm Account #', account.accountNumber);
+    await fillPlaceholder(page, 'Routing #', account.routingNumber);
+    await fillPlaceholder(page, 'Confirm Routing #', account.routingNumber);
     if (scenario.accountType === 'Savings') await selectSavings(page);
   }
 

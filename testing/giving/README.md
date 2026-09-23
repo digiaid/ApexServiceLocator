@@ -2,12 +2,11 @@
 
 Guest checkout against a Young Life sandbox giving site. Pass the sandbox name; the site URL is `https://young-life--{sandbox}.sandbox.my.site.com/s/`.
 
-These scenarios were written for the tsystest02 Tsys TXP TransFirst mock:
+Card numbers, CVVs, bank accounts, and known pass or fail results live in one file per processor under `processors/`. The scenarios in `scenarios.json` were written for TransFirst: they look up the cards and accounts named `success` and `decline`.
 
-- A card number ending in `00` is approved. A card number ending in `01` is declined.
-- An ACH account ending in `00` is approved. The routing number is `121212121`. An account ending in `01` is declined.
+`processors/transfirst.json` is the Tsys TXP TransFirst mock confirmed on tsystest02. A card or account ending in `00` is approved. Ending in `01` is declined. The ACH routing number is `121212121`.
 
-Another sandbox can use the same runner. If its processor rules differ, change the card and ACH numbers in `config.json` and the expectations in `scenarios.json`.
+`processors/transit.json` is TSYS TransIt. Its test cards and the amounts that pass, fail, or partially approve are the published TSYS test-host values. On that host the same card passes or fails based on the amount. Those values have not been confirmed on a Young Life sandbox, and the current scenarios do not use them.
 
 Successful gifts come back with a `YL…` reference number. The confirmation page loads that number through `YL_giftConfirmationController.getInvoiceItems`, which returns the `RP_InvoiceLine__c` (mission unit, class, frequency, amount, tribute). This package submits the gift, then checks that invoice line. Declines are checked on the billing page and are not given a reference number.
 
@@ -28,11 +27,11 @@ The runner starts a normal Google Chrome with a remote debugging port and attach
 
 ```bash
 node run.js --sandbox tsystest02
-node run.js --sandbox tsystest02 cc-onetime-fee ach-decline
+node run.js --sandbox tsystest02 --processor transfirst cc-onetime-fee ach-decline
 node run.js --sandbox tsystest02 --verify YL0017738056
 ```
 
-`SANDBOX=tsystest02 node run.js` is the same as `--sandbox tsystest02`.
+`SANDBOX=tsystest02 node run.js` is the same as `--sandbox tsystest02`. `--processor` defaults to `transfirst`. `PROCESSOR=transit` selects `processors/transit.json`.
 
 A full run writes `results/report-*.json` and creates real guest gifts in that sandbox. Results, `node_modules`, and the Chrome profile are not committed.
 
@@ -53,4 +52,4 @@ A full run writes `results/report-*.json` and creates real guest gifts in that s
 
 Every gift is a guest checkout to Boonville Young Life (IN113), 123 Test Lane, Colorado Springs, CO 80903. The card fee is 3.5% and the “I agree to cover processing fee” box is checked when Credit Card is selected.
 
-Edit `config.json` for the site URL pattern, designation search, address, and the mock card and ACH numbers. Edit `scenarios.json` to add or drop cases.
+Edit `config.json` for the site URL pattern, designation search, and address. Add a processor by dropping another JSON file in `processors/` and passing its file name to `--processor`. Edit `scenarios.json` to add or drop cases. A scenario’s `card` or `account` value is the `id` inside the selected processor file.

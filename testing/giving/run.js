@@ -4,12 +4,19 @@ const config = require('./config.json');
 const scenarios = require('./scenarios.json');
 const { connect } = require('./lib/browser');
 const { submitGift } = require('./lib/gift');
+const { loadProcessor, creditCard, bankAccount } = require('./lib/processor');
 const { invoiceItems, compareInvoice } = require('./lib/verify');
 
 const ROOT = __dirname;
 
 function parseArgs(argv) {
-  const args = { sandbox: process.env.SANDBOX || '', verify: false, references: [], scenarios: [] };
+  const args = {
+    sandbox: process.env.SANDBOX || '',
+    processor: process.env.PROCESSOR || 'transfirst',
+    verify: false,
+    references: [],
+    scenarios: [],
+  };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--sandbox') {
@@ -17,6 +24,11 @@ function parseArgs(argv) {
       index += 1;
     } else if (arg.startsWith('--sandbox=')) {
       args.sandbox = arg.slice('--sandbox='.length);
+    } else if (arg === '--processor') {
+      args.processor = argv[index + 1] || '';
+      index += 1;
+    } else if (arg.startsWith('--processor=')) {
+      args.processor = arg.slice('--processor='.length);
     } else if (arg === '--verify') {
       args.verify = true;
     } else if (arg.startsWith('--')) {
@@ -45,6 +57,13 @@ function selectedScenarios(names) {
   const missing = names.filter((name) => !scenarios.some((scenario) => scenario.id === name));
   if (missing.length) throw new Error(`Unknown scenario: ${missing.join(', ')}`);
   return chosen;
+}
+
+function assertPaymentValues(processor, chosen) {
+  for (const scenario of chosen) {
+    if (scenario.method === 'card') creditCard(processor, scenario.card || 'success');
+    else bankAccount(processor, scenario.account || 'success');
+  }
 }
 
 function judge(result, scenario, invoice, config) {
@@ -95,6 +114,9 @@ async function verifyOnly(page, references) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   config.baseUrl = siteUrl(args.sandbox);
+  config.processor = loadProcessor(ROOT, args.processor);
+  const chosen = args.verify ? [] : selectedScenarios(args.scenarios);
+  if (!args.verify) assertPaymentValues(config.processor, chosen);
   const port = process.env.TSYS_CDP_PORT || '9333';
   const { page, webdriver } = await connect(port);
   console.log(config.baseUrl);
@@ -109,12 +131,13 @@ async function main() {
   const report = {
     startedAt: new Date().toISOString(),
     sandbox: args.sandbox,
+    processor: config.processor.id,
     baseUrl: config.baseUrl,
     webdriver,
     gifts: [],
   };
 
-  for (const scenario of selectedScenarios(args.scenarios)) {
+  for (const scenario of chosen) {
     process.stdout.write(`\n${scenario.id} ... `);
     try {
       const result = await submitGift(page, config, scenario);
